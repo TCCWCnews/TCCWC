@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TCWC • NEWS  </title>
+
+  <!-- Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:#0f0f0f; --panel:#181818; --text:#fff; --muted:#aaa;
+      --chip:#222; --chip-active:#fff; --chip-active-text:#000;
+      --border:#2a2a2a; --brand:#ff0033;
+    }
+    body { margin:0; font-family:sans-serif; background:var(--bg); color:var(--text); }
+
+    /* Topbar */
+    .topbar {
+      position:sticky; top:0; z-index:50; display:flex; align-items:center;
+      justify-content:space-between; padding:0 16px; height:64px;
+      background:var(--panel); border-bottom:1px solid var(--border);
+    }
+    .brand { display:flex; align-items:center; gap:12px; }
+    .brand button {
+      color:#fff; font-weight:bold; background:#ff0000; border:none;
+      padding:8px 16px; border-radius:4px; cursor:pointer;
+      box-shadow:0 0 10px #ff0000, 0 0 20px #ff0000;
+    }
+    .logo img{ height:40px; }
+    .search { display:flex; gap:6px; align-items:center; }
+    .search input{
+      padding:6px 10px; border:1px solid var(--border);
+      border-radius:20px; background:#0b0b0b; color:var(--text);
+    }
+    .pill-btn{
+      padding:6px 12px; border-radius:18px;
+      border:1px solid var(--border); background:#0b0b0b;
+      color:var(--text); cursor:pointer;
+    }
+
+    /* Chips */
+    .chips{
+      padding:10px 16px;
+      overflow-x:auto;
+      white-space:nowrap;
+      background:var(--bg);
+      margin-bottom:10px; /* spacing instead of border */
+    }
+    .chip{
+      display:inline-block; margin-right:8px; padding:8px 12px;
+      border-radius:16px; background:var(--chip); color:var(--muted); cursor:pointer;
+    }
+    .chip.active{ background:var(--chip-active); color:var(--chip-active-text); font-weight:600; }
+
+    /* Grid */
+    .grid{
+      padding:16px;
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(280px,1fr));
+      gap:16px;
+    }
+    .card{
+      background:var(--panel); border:1px solid var(--border);
+      border-radius:12px; overflow:hidden; cursor:pointer;
+    }
+    .thumb{
+      aspect-ratio:16/9; background:#000;
+      position:relative; display:flex; align-items:center; justify-content:center;
+    }
+    .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .play-overlay{
+      position:absolute; font-size:40px; color:#fff;
+      opacity:0.8; pointer-events:none;
+    }
+    .thumb iframe{ width:100%; height:100%; border:0; }
+    .body{ padding:10px; }
+    .title{ font-size:15px; margin:4px 0; }
+    .meta{ font-size:12px; color:var(--muted); }
+
+    /* Light mode */
+    body.light{
+      --bg:#f4f6f9; --panel:#fff; --text:#111; --muted:#555;
+      --chip:#f0f0f0; --chip-active:#111; --chip-active-text:#fff; --border:#ddd; --brand:#e21;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="brand">
+      <button>TCWC-NEWS</button>
+      <div class="logo"><img src="logo1.jpg" alt="AICC-TIPR Logo"></div>
+    </div>
+
+    <div class="search">
+      <div class="box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input id="searchInput" type="text" placeholder="Search channels… (e.g., TV9, BBC)" aria-label="Search" />
+      </div>
+      <button class="pill-btn" id="searchBtn" title="Search"><i class="fa-solid fa-arrow-right"></i></button>
+      <button class="pill-btn" title="Voice"><i class="fa-solid fa-microphone"></i></button>
+    </div>
+
+    <div class="actions">
+      <button class="pill-btn" id="themeBtn" title="Toggle light/dark">🌙</button>
+      <button class="pill-btn" title="Login"><i class="fa-regular fa-user"></i></button>
+    </div>
+  </header>
+
+  <!-- Chips -->
+  <div class="chips" id="chips">
+    <span class="chip active" data-chip="all">All</span>
+    <span class="chip" data-chip="telugu">Telugu</span>
+    <span class="chip" data-chip="hindi">Hindi</span>
+    <span class="chip" data-chip="english">English</span>
+    <span class="chip" data-chip="international">International</span>
+    <span class="chip" data-chip="congress">Congress</span>
+  </div>
+
+  <!-- Video Grid -->
+  <div class="grid" id="videoGrid"></div>
+
+<script>
+  // ===============================
+  // Video Arrays
+  // ===============================
+const telugu = [
+  { title:"V6 Telugu — Live", meta:"Telugu • Live", src:"https://www.youtube.com/embed/nrb8P8shbDk" },
+  { title:"TV9 Telugu — Live", meta:"Telugu • Live", src:"https://www.youtube.com/embed/II_m28Bm-iM" },
+  { title:"NTV Telugu — Live", meta:"Telugu • Live", src:"https://www.youtube.com/embed/L0RktSIM980" },
+  { title:"ABN Andhra Jyothi — Live", meta:"Telugu • Live", src:"https://www.youtube.com/embed/HoYsWagMFfE" },
+  { title:"Sakshi TV — Live", meta:"Telugu • Live", src:"https://www.youtube.com/embed/9kCcUipLPJM" },
+
+
+];
+
+
+const hindi = [
+  { title:"India TV — Live", meta:"Hindi • Live", src:"https://www.youtube.com/embed/Xmm3Kr5P1Uw" },
+  { title:"TV9 Bharatvarsh — Live", meta:"Hindi • Live", src:"https://www.youtube.com/embed/nSpwwcHVp80" },
+  { title:"ABP News — Live", meta:"Hindi • Live", src:"https://www.youtube.com/embed/nyd-xznCpJc" },
+  { title:"DD News — Live", meta:"Hindi • Live", src:"https://www.youtube.com/embed/cSQ7egiOTaA" },
+
+];
+
+
+const english = [
+  { title:"NDTV 24x7 — Live", meta:"English • Live", src:"https://www.youtube.com/embed/uoK1dFpMo98" },
+  
+
+];
+
+
+
+const international = [
+  { title:"Al Jazeera English — Live", meta:"International", src:"https://www.youtube.com/embed/gCNeDWCI0vo" },
+  { title:"DW News — Live", meta:"International", src:"https://www.youtube.com/embed/LuKwFajn37U" },
+  { title:"France 24 — Live", meta:"International", src:"https://www.youtube.com/embed/Ap-UM1O9RBU" },
+  { title:"DD India — Live", meta:"International", src:"https://www.youtube.com/embed/5OELrhIb3q0" },
+  
+];
+
+
+
+const congress = [
+  { title:"LIVE: Voter Adhikar Yatra | West Champaran | Bihar", meta:"Congress • Live", src:"https://www.youtube.com/embed/DwpwEjs36js" },
+  { title:"Makhana: Superfood के पीछे का संघर्ष | Rahul Gandhi | Voter Adhikar Yatra, Bihar", meta:"Congress", src:"https://www.youtube.com/embed/mab_6OZEvos" },
+  { title:"Vote Chori 2024: देश का सबसे बड़ा चुनावी घोटाला | Rahul Gandhi", meta:"Congress • Live", src:"https://www.youtube.com/embed/-cc9wpgIYPc" },
+  { title:"Vote Chori के atom bomb सबूत | Rahul Gandhi | Press Conference", meta:"Congress • Live", src:"https://www.youtube.com/embed/nc6F4YFnG9c" }
+];
+
+
+  const videos = { telugu, hindi, english, international, congress };
+
+  const grid=document.getElementById("videoGrid");
+
+  // ===============================
+  // Helpers
+  // ===============================
+  function getVideoId(url){
+    const match = url.match(/embed\/([^?]+)/);
+    return match ? match[1] : "";
+  }
+
+  // ===============================
+  // Rendering Function
+  // ===============================
+  function renderVideos(filter="all", query=""){
+    grid.innerHTML = "";
+    const cats = filter==="all" ? Object.keys(videos) : [filter];
+
+    cats.forEach(cat=>{
+      videos[cat].forEach(v=>{
+        if(v.title.toLowerCase().includes(query)){
+          const vid = getVideoId(v.src);
+          const thumbUrl = `https://img.youtube.com/vi/${vid}/hqdefault.jpg`;
+
+          const card=document.createElement("div");
+          card.className="card";
+          card.setAttribute("data-cat",cat);
+          card.innerHTML=`
+            <div class="thumb" data-src="${v.src}">
+              <img src="${thumbUrl}" alt="${v.title}">
+              <div class="play-overlay">▶</div>
+            </div>
+            <div class="body">
+              <div class="title">${v.title}</div>
+              <div class="meta">${v.meta}</div>
+            </div>`;
+          grid.appendChild(card);
+        }
+      });
+    });
+
+    // Play on click
+    document.querySelectorAll(".thumb").forEach(thumb=>{
+      thumb.addEventListener("click",()=>{
+        stopAllVideos();
+        const src=thumb.dataset.src+"?autoplay=1";
+        thumb.innerHTML=`<iframe src="${src}" allow="autoplay" allowfullscreen loading="lazy"></iframe>`;
+      });
+    });
+  }
+
+  // Stop all videos
+  function stopAllVideos(){
+    document.querySelectorAll(".thumb").forEach(thumb=>{
+      const src=thumb.dataset.src;
+      if(src){
+        const vid = getVideoId(src);
+        const thumbUrl = `https://img.youtube.com/vi/${vid}/hqdefault.jpg`;
+        thumb.innerHTML=`<img src="${thumbUrl}" alt="Video">
+                         <div class="play-overlay">▶</div>`;
+      }
+    });
+  }
+
+  // ===============================
+  // Theme toggle
+  // ===============================
+  const themeBtn=document.getElementById('themeBtn');
+  const savedTheme=localStorage.getItem('tipr-theme');
+  if(savedTheme) document.body.classList.toggle('light', savedTheme==='light');
+  themeBtn.textContent=document.body.classList.contains('light')?'🌙':'☀️';
+  themeBtn.addEventListener('click',()=>{
+    document.body.classList.toggle('light');
+    localStorage.setItem('tipr-theme',document.body.classList.contains('light')?'light':'dark');
+    themeBtn.textContent=document.body.classList.contains('light')?'🌙':'☀️';
+  });
+
+  // ===============================
+  // Chips Filter
+  // ===============================
+  function setActiveChip(key){
+    document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('active',c.dataset.chip===key));
+  }
+  document.getElementById('chips').addEventListener('click',e=>{
+    const chip=e.target.closest('.chip'); if(!chip)return;
+    setActiveChip(chip.dataset.chip);
+    renderVideos(chip.dataset.chip, document.getElementById("searchInput").value.toLowerCase());
+  });
+
+  // ===============================
+  // Search
+  // ===============================
+  const searchIn=document.getElementById('searchInput');
+  const searchBtn=document.getElementById('searchBtn');
+  function performSearch(){
+    const q=(searchIn.value||'').toLowerCase();
+    const activeChip=document.querySelector('.chip.active').dataset.chip;
+    renderVideos(activeChip,q);
+  }
+  searchBtn.addEventListener('click',performSearch);
+  searchIn.addEventListener('keydown',e=>{if(e.key==='Enter')performSearch();});
+
+  // Initial load
+  renderVideos("all");
+</script>
+</body>
+</html>
