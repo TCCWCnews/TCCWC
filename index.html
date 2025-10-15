@@ -66,20 +66,26 @@
             font-size: 0.875rem;
             font-weight: 500;
             transition: all 0.15s ease-in-out;
-            background-color: #e5e7eb; /* bg-gray-200 */
-            color: #1f2937; /* text-text-dark */
+            background-color: #e5e7eb;
+            /* bg-gray-200 */
+            color: #1f2937;
+            /* text-text-dark */
             cursor: pointer;
         }
 
         .chip:hover {
-            background-color: #d1d5db; /* hover:bg-gray-300 */
+            background-color: #d1d5db;
+            /* hover:bg-gray-300 */
         }
 
         /* Chip active state styling */
         .chip.active {
-            background-color: #1f2937; /* bg-gray-900 */
-            color: #ffffff; /* text-white */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            background-color: #1f2937;
+            /* bg-gray-900 */
+            color: #ffffff;
+            /* text-white */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            /* shadow-md */
         }
 
         /* --- VERTICAL SHORTS FEED STYLES --- */
@@ -155,7 +161,8 @@
 <body>
     <header class="sticky top-0 bg-white shadow-lg z-20">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center p-3">
-            <a href="#" class="text-2xl font-extrabold text-[#FF0033]" data-page="all-news" aria-label="TCWC News Home">TCWC-NEWS</a>
+            <a href="#" class="text-2xl font-extrabold text-[#FF0033]" data-page="all-news"
+                aria-label="TCWC News Home">TCWC-NEWS</a>
             <nav class="flex space-x-4 font-semibold mt-2 md:mt-0">
                 <a href="#" class="nav-link" data-page="telugu-news" aria-label="View Telugu News">Telugu News</a>
                 <a href="#" class="nav-link" data-page="hindi-news" aria-label="View Hindi News">Hindi News</a>
@@ -167,30 +174,38 @@
     </header>
 
     <div id="pageContent" class="min-h-screen">
-        </div>
+    </div>
 
     <footer class="bg-gray-900 text-gray-300 mt-8 pt-10 pb-6">
         <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 px-6">
             <div>
                 <h3 class="text-white font-bold text-xl mb-3">TCWC News</h3>
-                <p class="text-sm text-gray-400">Your trusted source for quick and reliable short video news in Telugu, Hindi, and English.</p>
+                <p class="text-sm text-gray-400">Your trusted source for quick and reliable short video news in
+                    Telugu, Hindi, and English.</p>
             </div>
             <div>
                 <h4 class="text-white font-semibold mb-3">Quick Links</h4>
                 <ul class="space-y-2 text-sm">
                     <li><a href="#" data-page="all-news" class="hover:text-brand" aria-label="Home">Home</a></li>
-                    <li><a href="#" data-page="about-us" class="hover:text-brand" aria-label="About Us">About Us</a></li>
-                    <li><a href="#" data-page="contact-us" class="hover:text-brand" aria-label="Contact Us">Contact Us</a></li>
-                    <li><a href="#" data-page="english-news" class="hover:text-brand" aria-label="English News">English News</a></li>
+                    <li><a href="#" data-page="about-us" class="hover:text-brand" aria-label="About Us">About Us</a>
+                    </li>
+                    <li><a href="#" data-page="contact-us" class="hover:text-brand" aria-label="Contact Us">Contact
+                            Us</a></li>
+                    <li><a href="#" data-page="english-news" class="hover:text-brand" aria-label="English News">English
+                            News</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="text-white font-semibold mb-3">Follow Us</h4>
                 <div class="flex space-x-4 text-xl">
-                    <a href="#" class="hover:text-brand" aria-label="Follow us on Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="hover:text-brand" aria-label="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="hover:text-brand" aria-label="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="hover:text-brand" aria-label="Subscribe to our YouTube channel"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="hover:text-brand" aria-label="Follow us on Facebook"><i
+                            class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-brand" aria-label="Follow us on Twitter"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-brand" aria-label="Follow us on Instagram"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-brand" aria-label="Subscribe to our YouTube channel"><i
+                            class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>
@@ -202,7 +217,7 @@
     <script>
         // --- VIDEO DATA (Keep comprehensive data for all categories) ---
         const telugu = [{
-            title: "LIVE Congress Party Focus On Jubilee Hills Bypoll CM Revanth Reddy PCC Chief Mahesh  V6 News",
+            title: "LIVE Congress Party Focus On Jubilee Hills Bypoll CM Revanth Reddy PCC Chief Mahesh  V6 News",
             meta: "Telugu • Congress news",
             src: "https://www.youtube.com/embed/w7Z9C7jN2TY"
         }, {
@@ -224,28 +239,36 @@
         }, ];
 
         const hindi = [{
-            title: "India TV — Breaking News",
+            title: "Learning how to brew Colombian Coffee | Rahul Gandhi",
             meta: "Hindi • Live Updates",
-            src: "https://www.youtube.com/embed/Xmm3Kr5P1Uw"
+            src: "https://youtube.com/embed/ZrgD5x68Uh4"
         }, {
-            title: "TV9 Bharatvarsh — Special Report",
-            meta: "Hindi • War Coverage",
-            src: "https://www.youtube.com/embed/nSpwwcHVp80"
+            title: "BJP वालों, तैयार रहना... हाइड्रोजन बम फटने वाला है! | Rahul Gandhi | H-Bomb | Vote Chori",
+            meta: "Hindi •Rahul Gandhi",
+            src: "https://www.youtube.com/embed/fOHTNtfNd2o"
+
         }, {
             title: "ABP News — Latest Headlines",
             meta: "Hindi • Top Stories",
             src: "https://www.youtube.com/embed/nyd-xznCpJc"
         }, {
-            title: "DD News — National Broadcast",
-            meta: "Hindi • Government News",
-            src: "https://www.youtube.com/embed/cSQ7egiOTaA"
+            title: "'भेड़ की खाल में भेड़िए छिपे बैठे हैं!' | पवन खेड़ा को किस पर गुस्सा आ गया! | Pawan Khera | RSS",
+            meta: "Hindi • INC NEWS",
+            src: "https://www.youtube.com/embed/It07Rey1gmw"
         }, ];
 
         const english = [{
-            title: "NDTV 24x7 — Global Watch",
-            meta: "English • International News",
-            src: "https://www.youtube.com/embed/uoK1dFpMo98"
-        }, ];
+            title: "Rahul Gandhi engages students from Peru & Chile in dialogue on education, democracy and geopolitics",
+            meta: "English • INC",
+            src: "https://www.youtube.com/embed/aiQjJ5KPcpo"
+        }, 
+    
+    {
+            title: "Sonia Gandhi and Priyanka Gandhi unveil statue of Ex-CM Virbhadra Singh in Shimla",
+            meta: "English • INC",
+            src: "https://www.youtube.com/embed/4KjggSiiJQk"
+        }, 
+    ];
 
         const international = [{
             title: "Al Jazeera English — World Report",
@@ -457,7 +480,7 @@
 
                     <main class="flex justify-center mt-4">
                         <div id="videoGrid" class="shorts-container">
-                            </div>
+                        </div>
                     </main>
                 </div>
             `;
