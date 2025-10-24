@@ -545,46 +545,60 @@
             } else if (pageId === 'contact-us') {
                 title = 'Contact Us';
                 htmlContent = `
-                    <div class="max-w-3xl mx-auto p-8 my-10 bg-white rounded-xl shadow-xl">
-                        <h1 class="text-4xl font-bold mb-6 text-text-dark border-b pb-2 border-brand">Get in Touch</h1>
-                        <p class="text-lg text-text-muted mb-6">
-                            We value your feedback and inquiries. Please use the contact methods below to reach out to the appropriate team.
-                        </p>
+                   <div class="max-w-3xl mx-auto p-8 my-10 bg-white rounded-xl shadow-xl">
+    <h1 class="text-4xl font-bold mb-6 text-text-dark border-b pb-2 border-brand">Get in Touch</h1>
+    <p class="text-lg text-text-muted mb-6">
+        We value your feedback and inquiries. Please use the contact methods below to reach out to the appropriate team.
+    </p>
 
-                        <div class="space-y-6">
-                            <div class="flex items-center space-x-4">
-                                <i class="fa-solid fa-envelope text-brand text-2xl"></i>
-                                <div>
-                                    <h3 class="font-semibold text-text-dark">Editorial Inquiries</h3>
-                                    <p class="text-text-muted">coming soon </p>
-                                </div>
-                            </div>
+    <div class="space-y-6">
+        
+        <div class="flex items-center space-x-4">
+            <i class="fa-solid fa-phone text-brand text-2xl w-6 text-center"></i>
+            <div>
+                <h3 class="font-semibold text-text-dark">President: Rangasai Bhattu</h3>
+                <a href="tel:+916303935663" class="text-text-muted hover:text-brand">6303935663</a>
+                <br>
+                <a href="tel:+919000524532" class="text-text-muted hover:text-brand">9000524532</a>
+            </div>
+        </div>
 
-                            <div class="flex items-center space-x-4">
-                                <i class="fa-solid fa-phone text-brand text-2xl"></i>
-                                <div>
-                                    <h3 class="font-semibold text-text-dark">Support Hotline</h3>
-                                    <p class="text-text-muted">coming soon </p>
-                                </div>
-                            </div>
+        <div class="flex items-center space-x-4">
+            <i class="fa-brands fa-whatsapp text-brand text-2xl w-6 text-center"></i>
+            <div>
+                <h3 class="font-semibold text-text-dark">Quick Chat</h3>
+                <a href="https://wa.me/916303935663" target="_blank" rel="noopener noreferrer" 
+                   class="inline-block bg-green-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300 text-sm">
+                   Start WhatsApp Chat
+                </a>
+            </div>
+        </div>
 
-                            <div class="flex items-center space-x-4">
-                                <i class="fa-solid fa-location-dot text-brand text-2xl"></i>
-                                <div>
-                                    <h3 class="font-semibold text-text-dark">Coming soon </h3>
-                                    <p class="text-text-muted">Coming soon </p>
-                                </div>
-                            </div>
-                        </div>
+        <div class="flex items-center space-x-4">
+            <i class="fa-solid fa-envelope text-brand text-2xl w-6 text-center"></i>
+            <div>
+                <h3 class="font-semibold text-text-dark">Editorial Inquiries</h3>
+                <p class="text-text-muted">coming soon </p>
+            </div>
+        </div>
 
-                        <form class="mt-10 space-y-4">
-                            <h2 class="text-2xl font-semibold text-text-dark">Send a Message</h2>
-                            <input type="text" placeholder="Your Name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-brand focus:border-brand">
-                            <input type="email" placeholder="Your Email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-brand focus:border-brand">
-                            <textarea placeholder="Your Message" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-brand focus:border-brand"></textarea>
-                            <button type="submit" class="bg-brand text-white font-bold py-3 px-6 rounded-lg hover:bg-red-700 transition duration-300">Submit Inquiry</button>
-                        </form>
-                    </div>
+        <div class="flex items-center space-x-4">
+            <i class="fa-solid fa-location-dot text-brand text-2xl w-6 text-center"></i>
+            <div>
+                <h3 class="font-semibold text-text-dark">Address</h3>
+                <p class="text-text-muted">Coming soon </p>
+            </div>
+        </div>
+    </div>
+
+    <form class="mt-10 space-y-4">
+        <h2 class="text-2xl font-semibold text-text-dark">Send a Message</h2>
+        <input type="text" placeholder="Your Name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-brand focus:border-brand">
+        <input type="email" placeholder="Your Email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-brand focus:border-brand">
+        <textarea placeholder="Your Message" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-brand focus:border-brand"></textarea>
+        <button type="submit" class="bg-brand text-white font-bold py-3 px-6 rounded-lg hover:bg-red-700 transition duration-300">Submit Inquiry</button>
+    </form>
+</div>
                 `;
             }
 
@@ -696,3 +710,4 @@
 </body>
 
 </html>
+
